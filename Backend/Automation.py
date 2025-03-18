@@ -14,7 +14,9 @@ import os
 
 
 env_vars=dotenv_values(".env")
-GroqAPIKey = os.getenv("GroqAPIKey")
+GroqAPIKey = env_vars.get("GroqAPIKey")
+
+
 
 # Define CSS classes for parsing specific elements in HTML content.
 classes = ["zCubwf", "hgKElc", "LTK00 SY7ric", "Z0LcW", "gsrt vk_bk FzvWSb YwPhnf", "pclqee", "tw-Data-text tw-text-small tw-ta",
@@ -268,4 +270,4 @@ async def Automation (commands: list[str]):
     return True
 
 if __name__ == "__main__":
-    asyncio.run(Automation(["content request to cse staff for hackathon conduction by GDG coming month"]))
+    asyncio.run(Automation(["close discord","play nasheed mix","open settings","content request to cse staff for hackathon conduction by GDG coming month"]))

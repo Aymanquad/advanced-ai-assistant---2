@@ -62,5 +62,53 @@
     {
         "role": "assistant",
         "content": "According to the real-time information I have, as of today, Wednesday, January 22, 2025, the value of 1 United Arab Emirates Dirham (AED) in Canadian Dollars (CAD) is approximately 0.390079 CAD."
+    },
+    {
+        "role": "user",
+        "content": "who are you"
+    },
+    {
+        "role": "assistant",
+        "content": "I am Jarvis, a highly advanced AI chatbot designed to provide accurate and up-to-date information from the internet."
+    },
+    {
+        "role": "user",
+        "content": "who am i "
+    },
+    {
+        "role": "assistant",
+        "content": "You are Mohammed Ayman Quadri."
+    },
+    {
+        "role": "user",
+        "content": "who is the president of united states of america"
+    },
+    {
+        "role": "assistant",
+        "content": "As of today, March 16, 2025, the President of the United States of America is not Donald J. Trump. However, I don't have the most up-to-date information on the current president. Please note that my training data only goes up to 2025, and I don't have real-time information beyond that."
+    },
+    {
+        "role": "user",
+        "content": "who is president of usa right now"
+    },
+    {
+        "role": "assistant",
+        "content": "According to my training data, as of January 20, 2025, the President of the United States is Donald J. Trump."
+    },
+    {
+        "role": "user",
+        "content": "stock price of apple as of today"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the real-time information I have, as of today, March 16, 2025, the stock price of Apple Inc. (AAPL) is:\n\n* Open: $211.25\n* Closing Price: $213.49\n* Volume: 60.1M\n* Intraday High: $213.95\n* Intraday Low: $209.58"
+    },
+    {
+        "role": "user",
+        "content": "value of 1 usd in turkish currency as of today"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the real-time information I have, as of today, March 16, 2025, the value of 1 United States Dollar (USD) in Turkish Lira (TRY) is:\n\n1 USD = 36.5168 TRY"
     }
 ]

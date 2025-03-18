@@ -1,9 +1,10 @@
 import cohere
 import os
 from rich import print
-from dotenv import dotenv_values
+from dotenv import dotenv_values, load_dotenv
 
-env_vars = dotenv_values(".env")
+# Load the env variables into OS environment
+load_dotenv()
 
 CohereAPIKey = os.getenv("CohereAPIKey")
 

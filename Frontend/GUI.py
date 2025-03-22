@@ -7,6 +7,7 @@ from dotenv import dotenv_values
 import sys
 import os
 import vlc
+from Frontend.Utils import GetMicrophoneStatus, SetMicrophoneStatus  # Updated import
 
 
 env_vars=dotenv_values(".env")
@@ -265,9 +266,11 @@ class ChatSection(QWidget):
         self.toggled = not self.toggled  # Toggle state first
         if self.toggled:
             self.load_icon(GraphicsDirectoryPath('mute.png'), 60, 60)
+            SetMicrophoneStatus("False")  # Make sure to set status to False when muted
             MicButtonInitialed()
         else:
             self.load_icon(GraphicsDirectoryPath('mic_on.png'), 60, 60)
+            SetMicrophoneStatus("True")   # Make sure to set status to True when unmuted
             MicButtonClosed()
 
     def handle_media_status(self, status):
@@ -375,9 +378,11 @@ class InitialScreen(QWidget):
         self.toggled = not self.toggled  # Toggle state first
         if self.toggled:
             self.load_icon(GraphicsDirectoryPath('mute.png'), 60, 60)
+            SetMicrophoneStatus("False")  # Make sure to set status to False when muted
             MicButtonInitialed()
         else:
             self.load_icon(GraphicsDirectoryPath('mic_on.png'), 60, 60)
+            SetMicrophoneStatus("True")   # Make sure to set status to True when unmuted
             MicButtonClosed()
 
     def handle_media_status(self, status):

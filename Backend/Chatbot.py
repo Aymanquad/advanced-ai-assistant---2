@@ -5,9 +5,9 @@ import datetime
 from dotenv import dotenv_values
 
 env_vars = dotenv_values(".env")
-Username = os.getenv("Username")
-Assistantname = os.getenv("Assistantname")
-GroqAPIKey = os.getenv("GroqAPIKey")
+Username = env_vars.get("Username")
+Assistantname = env_vars.get("Assistantname")
+GroqAPIKey = env_vars.get("GroqAPIKey")
 
 client = Groq(api_key=GroqAPIKey)
 
@@ -59,11 +59,13 @@ def AnswerModifier(Answer):
     return modified_answer
 
 def ChatBot(Query):
-
     try:
         with open(r"Data\ChatLog.json", "r") as f:
             messages = load(f)
 
+        # Debug log
+        print(f"ChatBot received query: {Query}")
+        
         messages.append({"role": "user", "content": f"{Query}"})
 
         completion = client.chat.completions.create(

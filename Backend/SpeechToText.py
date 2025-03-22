@@ -1,12 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome. options import Options
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import dotenv_values
+from Frontend.Utils import GetMicrophoneStatus
 import os
 import mtranslate as mt
 import time
+
+from Frontend.GUI import (
+GetMicrophoneStatus
+)
 
 # Load environment variables from the .env file.
 env_vars=dotenv_values(".env")
@@ -127,17 +132,26 @@ def UniversalTranslator(Text):
 
 def SpeechRecognition():
     try:
+        # First check if microphone is enabled
+        if GetMicrophoneStatus() != "True":
+            return ""
+            
         driver.get("file:///" + Link)
         driver.implicitly_wait(5)
         
         start_button = driver.find_element(by=By.ID, value="start")
         start_button.click()
         
-        # Add a wait loop to give time for speech recognition
-        max_attempts = 30  # Maximum number of attempts (30 * 0.5 seconds = 15 seconds max wait)
+        # Changed to 30 attempts * 0.5 seconds = 15 seconds total wait time
+        max_attempts = 30
         attempts = 0
         
         while attempts < max_attempts:
+            # Check if microphone got muted during listening
+            if GetMicrophoneStatus() != "True":
+                driver.find_element(by=By.ID, value="end").click()
+                return ""
+                
             Text = driver.find_element(by=By.ID, value="output").text
             if Text.strip():  # Only proceed if we have non-empty text
                 driver.find_element(by=By.ID, value="end").click()
@@ -150,6 +164,11 @@ def SpeechRecognition():
                     
             attempts += 1
             time.sleep(0.5)  # Wait half a second before checking again
+            
+            # Update status to show remaining time
+            remaining_time = (max_attempts - attempts) * 0.5
+            if remaining_time > 0:
+                SetAssistantStatus(f"Listening... ({remaining_time:.1f}s remaining)")
             
         raise TimeoutError("No speech detected within timeout period")
         

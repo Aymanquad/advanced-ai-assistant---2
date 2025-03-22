@@ -7,9 +7,15 @@ from googlesearch import search as gsearch
 
 
 env_vars = dotenv_values(".env")
-Username = os.getenv("Username")
-Assistantname = os.getenv("Assistantname")
-GroqAPIKey = os.getenv("GroqAPIKey")
+Username = env_vars.get("Username")
+Assistantname = env_vars.get("Assistantname")
+GroqAPIKey = env_vars.get("GroqAPIKey")
+
+
+# env_vars = dotenv_values(".env")
+# Username = os.getenv("Username")
+# Assistantname = os.getenv("Assistantname")
+# GroqAPIKey = os.getenv("GroqAPIKey")
 
 client = Groq(api_key=GroqAPIKey)
 
@@ -84,6 +90,9 @@ def AnswerModifier(Answer):
 
 def RealtimeSearchEngine(prompt):
     global SystemChatBot, messages
+    
+    # Debug log
+    print(f"RealtimeSearchEngine received prompt: {prompt}")
     
     with open(r"Data\ChatLog.json", "r") as f:
         messages = load(f)
